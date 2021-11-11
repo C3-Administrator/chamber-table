@@ -208,6 +208,12 @@
         background-color: transparent;
         color: var(--danger);
     }
+
+    @media only screen and (max-width: 414px) {
+        .businessBox {
+            flex-direction: column;
+        }
+    }
 </style>
 
 <script defer>
@@ -309,7 +315,7 @@
                         // `<div class='container'>${street} ${json.Data[i].Shipping_State} ${city}<br/> ${json.Data[i].Shipping_Code}</div>`
 
                         let address = /*html*/ `<address>
-                        <div class='container d-flex align-items-center'>
+                        <div class='container d-flex align-items-center businessBox'>
                             <div class='m-1' style="min-width: 100px;">${logo}</div><br/>
                             <div class='container'>
                                 <strong class='mt-2'>${json.Data[i].Account_Name}</strong><br>

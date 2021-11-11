@@ -36,11 +36,6 @@
     </div>
 </body>
 <style>
-    table.dataTable>tbody>tr.child ul.dtr-details>li {
-        border-bottom: none;
-        padding: .5em 0;
-    }
-
     .address {
         display: flex;
     }
@@ -213,12 +208,6 @@
         background-color: transparent;
         color: var(--danger);
     }
-
-    table.dataTable tbody th,
-    table.dataTable tbody td {
-        padding: 8px 10px;
-        /* e.g. change 8x to 4px here */
-    }
 </style>
 
 <script defer>
@@ -346,6 +335,7 @@
                             memberShipLevel: memberShipLevel,
                             categories: json.Data[i].Directory_Categories,
                             phone: json.Data[i].Phone ? `<a href='tel:${json.Data[i].Phone}'>${json.Data[i].Phone}</a>` : "",
+                            email: json.Data[i].Email ? `<a href='mailto:${json.Data[i].Email}' data-toggle='tooltip' data-placement='top' title=${json.Data[i].Email}>${json.Data[i].Email}</a>` : "",
                             additionalInformation: json.Data[i].Additional_Information ? json.Data[i].Additional_Information : ""
                         });
                     }
@@ -365,10 +355,10 @@
 
                     data: null,
                     defaultContent: '',
-                    width: "20%",
+
                     ordering: false
                 },
-                { title: "Business", width: "80%", data: "companyName" },
+                { title: "Business", data: "companyName", class: 'all' },
                 { title: "Category", data: "category", class: 'none' },
                 { title: "Description", data: "description", class: 'none' },
                 { title: "City", data: "city", class: 'none' },
@@ -376,6 +366,7 @@
                 { title: "Membership Level", data: 'memberShipLevel', class: 'none address' },
                 { title: "Tags", data: 'categories', class: 'none address' },
                 { title: "Phone", data: 'phone', class: 'none address' },
+                { title: "Email", data: 'email', class: 'none address' },
                 { title: "Additional Information", data: 'additionalInformation', class: 'none' }
 
             ],
@@ -480,6 +471,10 @@
         var iframe = document.createElement('iframe');
 
     }
+    $(window).resize(function () {
+        var table = $('#memberListingTable').DataTable();
+        table.columns.adjust().draw();
+    });
 
 </script>
 
